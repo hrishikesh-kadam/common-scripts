@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 SET_SHELL_ENV_VERBOSE=1
-source "$PRIMARY_OS_ROOT/main-data/dev/scripts/testing/set-testing-env.sh"
+source "$COMMON_SCRIPTS_ROOT/testing/set-testing-env.sh"
 
-pushd "$PRIMARY_OS_ROOT/main-data/dev/scripts/flutter" &> /dev/null || exit
+pushd "$COMMON_SCRIPTS_ROOT/flutter" &> /dev/null || exit
 
 if [[ "$(command -v trash)" ]]; then
   readonly delete_command="trash"

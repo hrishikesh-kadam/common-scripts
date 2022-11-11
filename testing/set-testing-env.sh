@@ -2,7 +2,7 @@
 
 # This shell script is mean to be sourced for unit testing
 
-. "$PRIMARY_OS_ROOT/main-data/dev/scripts/logs/set-logs-env.sh"
+. "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
 total_tests=0
 failed_tests=0

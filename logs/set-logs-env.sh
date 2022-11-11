@@ -2,7 +2,7 @@
 
 # This shell script is mean to be sourced for printing colorful logs
 
-. "$PRIMARY_OS_ROOT/main-data/dev/scripts/set-shell-env.sh"
+. "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
 
 export PRINT_WARNING_LOG=0
 export PRINT_INFO_LOG=0

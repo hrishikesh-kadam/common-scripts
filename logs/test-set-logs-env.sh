@@ -1,7 +1,7 @@
 # shellcheck shell=sh
 
 SET_SHELL_ENV_VERBOSE=1
-. "$PRIMARY_OS_ROOT/main-data/dev/scripts/logs/set-logs-env.sh"
+. "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
 echo "-------------------------------------------"
 

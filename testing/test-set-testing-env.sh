@@ -1,7 +1,7 @@
 # shellcheck shell=sh
 
 SET_SHELL_ENV_VERBOSE=1
-. "$PRIMARY_OS_ROOT/main-data/dev/scripts/testing/set-testing-env.sh"
+. "$COMMON_SCRIPTS_ROOT/testing/set-testing-env.sh"
 
 test_suite=0
 

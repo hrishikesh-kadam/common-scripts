@@ -7,7 +7,7 @@ setup_file() {
 setup() {
   load "$NPM_ROOT_GLOBAL/bats-support/load.bash"
   load "$NPM_ROOT_GLOBAL/bats-assert/load.bash"
-  . "$PRIMARY_OS_ROOT/main-data/dev/scripts/logs/set-logs-env.sh"
+  . "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 }
 
 @test "print_in_red" {
