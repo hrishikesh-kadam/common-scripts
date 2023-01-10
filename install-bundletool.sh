@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# This shell script is meant to be sourced
+
 set -e
 
 install_bundletool() {

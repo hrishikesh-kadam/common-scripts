@@ -1,6 +1,6 @@
 # shellcheck shell=sh
 
-# This shell script is mean to be sourced for printing colorful logs
+# This shell script is meant to be sourced for printing colorful logs
 
 . "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
 

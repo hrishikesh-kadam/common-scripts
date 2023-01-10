@@ -1,6 +1,6 @@
 # shellcheck shell=sh
 
-# This shell script is mean to be sourced for unit testing
+# This shell script is meant to be sourced for unit testing
 
 . "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
