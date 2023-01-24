@@ -8,3 +8,6 @@ VERSION=$( \
 )
 curl -o "$ANDROID_HOME/bundletool-all.jar" \
   -sL "https://github.com/google/bundletool/releases/download/$VERSION/bundletool-all-$VERSION.jar"
+
+printf "bundletool "
+java -jar "$ANDROID_HOME/bundletool-all.jar" version
