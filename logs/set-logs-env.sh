@@ -1,5 +1,4 @@
 # shellcheck shell=sh
-# shellcheck disable=SC2317
 
 # This shell script is meant to be sourced for printing colorful logs
 
