@@ -1,7 +1,13 @@
 #!/usr/bin/env bats
 
+set -e
+
 setup_file() {
   cd "$( dirname "$BATS_TEST_FILENAME" )" || exit
+  bats_require_minimum_version 1.5.0
+  # To disable shellcheck SC2154
+  stderr=""
+  stderr_lines=[]
 }
 
 setup() {
@@ -31,8 +37,8 @@ setup() {
 }
 
 @test "error_log" {
-  run error_log "Error log"
-  assert_output "[31mERROR: Error log[0m"
+  run --separate-stderr error_log "Error log"
+  [[ $stderr == "[31mERROR: Error log[0m" ]]
 }
 
 @test "warning_log" {
@@ -68,14 +74,38 @@ setup() {
   assert_output "[36mDEBUG: Debug log[0m"
 }
 
-@test "print_in_red 1st-argument 2nd-argument" {
-  run print_in_red "1st-argument" "2nd-argument"
-  assert_output "[31m1st-argument 2nd-argument[0m"
+@test "print_in_green 1st-argument 2nd-argument" {
+  run print_in_green "1st-argument" "2nd-argument"
+  assert_output "[32m1st-argument 2nd-argument[0m"
 }
 
-@test "error_with_help Error message 0" {
-  run error_with_help "Error message" 0
+@test "print_in_green multi-line" {
+  run print_in_green "1st-line\n2nd-line"
+  assert_output "[32m1st-line\n2nd-line[0m"
+}
+
+@test "error_log_with_exit Error log 0" {
+  run --separate-stderr error_log_with_exit "Error log" 0
+  [[ $stderr == "[31mERROR: Error log[0m" ]]
   assert_success
-  assert_line -n 0 "[31mERROR: Error message[0m"
-  assert_line -n 1 "Use -h or --help for details."
+}
+
+@test "error_log_with_exit Error log 1" {
+  run --separate-stderr error_log_with_exit "Error log" 1
+  [[ $stderr == "[31mERROR: Error log[0m" ]]
+  assert_failure 1
+}
+
+@test "error_log_with_help Error log 0" {
+  run --separate-stderr error_log_with_help "Error log" 0
+  [[ ${stderr_lines[0]} == "[31mERROR: Error log[0m" ]]
+  [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
+  assert_success
+}
+
+@test "error_log_with_help Error log 1" {
+  run --separate-stderr error_log_with_help "Error log" 1
+  [[ ${stderr_lines[0]} == "[31mERROR: Error log[0m" ]]
+  [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
+  assert_failure 1
 }

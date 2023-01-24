@@ -1,8 +1,11 @@
 # shellcheck shell=sh
+# shellcheck disable=SC2317
 
 # This shell script is meant to be sourced for printing colorful logs
 
 . "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
+
+set -e
 
 export PRINT_WARNING_LOG=0
 export PRINT_INFO_LOG=0
@@ -47,15 +50,30 @@ debug_log() {
 }
 
 #######################################
-# Print $1 as error message and exit with $2 as status
+# Print $1 as error log and exit with $2 as status
 # Arguments:
-#   $1 - Error message
+#   $1 - Error log
 #   $2 - Exit status
 # Returns:
 #   $2 argument
 #######################################
-error_with_help() {
+error_log_with_exit() {
+  error_log "$1"
+  exit "$2"
+}
+
+#######################################
+# Print $1 as error log, print help details and exit with $2 as status
+# Arguments:
+#   $1 - Error log
+#   $2 - Exit status
+# Returns:
+#   $2 argument
+#######################################
+error_log_with_help() {
   error_log "$1"
   echo "Use -h or --help for details." >&2
   exit "$2"
 }
+
+set +e

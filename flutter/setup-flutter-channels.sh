@@ -78,7 +78,7 @@ parse_channels() {
     esac
   done
   if (( ${#__channels[@]} == 0 )); then
-    error_with_help "No channels specified." 84
+    error_log_with_help "No channels specified." 84
   fi
 }
 
@@ -139,17 +139,17 @@ parse_arguments() {
         shift ${#_channels[@]}
         ;;
       *)
-        error_with_help "Unrecognized option: $1" 80
+        error_log_with_help "Unrecognized option: $1" 80
         ;;
     esac
   done
 
   if [[ -z "$_setup_path" ]]; then
-    error_with_help "--setup-path <path> is needed." 81
+    error_log_with_help "--setup-path <path> is needed." 81
   elif [[ ! -d "$_setup_path" ]]; then
     run mkdir "$_setup_path"
   elif [[ ! -w "$_setup_path" ]]; then
-    error_with_help "--setup-path $_setup_path needs to be a writable directory." 82
+    error_log_with_help "--setup-path $_setup_path needs to be a writable directory." 82
   fi
 
   _setup_path=${_setup_path%/}
@@ -182,7 +182,7 @@ setup_flutter_channels() {
     if [[ -d "$channel_path" ]]; then
       if [[ -n "$(ls -A "$channel_path")" ]]; then
         if (( overwrite == 0 )); then
-          error_with_help "$channel_path is not empty, please append --overwrite after <path> to continue." 83
+          error_log_with_help "$channel_path is not empty, please append --overwrite after <path> to continue." 83
         else
           run $delete_command "$channel_path"
           run mkdir "$channel_path"

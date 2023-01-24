@@ -1,5 +1,7 @@
 # shellcheck shell=sh
 
+set -e
+
 SET_SHELL_ENV_VERBOSE=1
 . "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
@@ -28,5 +30,12 @@ debug_log "Debug log"
 
 echo "-------------------------------------------"
 
-print_in_red "1st-argument" "2nd-argument"
-error_with_help "Error message" 0
+print_in_green "1st-argument" "2nd-argument"
+print_in_green "1st-line\n2nd-line"
+
+echo "-------------------------------------------"
+
+( error_log_with_exit "Error log" 0 )
+( error_log_with_exit "Error log" 1 ) || true
+( error_log_with_help "Error log" 0 )
+( error_log_with_help "Error log" 1 ) || true
