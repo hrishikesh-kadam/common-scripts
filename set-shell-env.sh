@@ -23,7 +23,7 @@ fi
 
 export PROFILE_SHELL
 
-if [ $SET_SHELL_ENV_VERBOSE -eq 1 ]; then
+if test SET_SHELL_ENV_VERBOSE -eq 1 ; then
   echo "\$SHELL = $SHELL"
   echo "\$PROFILE_SHELL = $PROFILE_SHELL"
 fi
