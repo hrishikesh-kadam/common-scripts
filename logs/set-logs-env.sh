@@ -2,6 +2,8 @@
 
 # This shell script is meant to be sourced for printing colorful logs
 
+if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
+
 . "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
 
 set -e
@@ -75,4 +77,4 @@ error_log_with_help() {
   exit "$2"
 }
 
-set +e
+if [ $PARENT_ERREXIT ]; then set -e; else set +e; fi

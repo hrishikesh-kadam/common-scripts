@@ -81,7 +81,8 @@ setup() {
 
 @test "print_in_green multi-line" {
   run print_in_green "1st-line\n2nd-line"
-  assert_output "[32m1st-line\n2nd-line[0m"
+  assert_line --index 0 "[32m1st-line"
+  assert_line --index 1 "2nd-line[0m"
 }
 
 @test "error_log_with_exit Error log 0" {

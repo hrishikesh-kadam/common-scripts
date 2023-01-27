@@ -2,6 +2,9 @@
 
 # Source - https://unix.stackexchange.com/a/72475/356166
 
+if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
+set -e
+
 SET_SHELL_ENV_VERBOSE=${SET_SHELL_ENV_VERBOSE:=0}
 
 if [ "$ZSH_VERSION" ]; then
@@ -24,3 +27,5 @@ if [ $SET_SHELL_ENV_VERBOSE -eq 1 ]; then
   echo "\$SHELL = $SHELL"
   echo "\$PROFILE_SHELL = $PROFILE_SHELL"
 fi
+
+if [ $PARENT_ERREXIT ]; then set -e; else set +e; fi
