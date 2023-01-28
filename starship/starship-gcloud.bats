@@ -1,7 +1,9 @@
 #!/usr/bin/env bats
 
+set -e -o pipefail
+
 setup_file() {
-  cd "$( dirname "$BATS_TEST_FILENAME" )" || exit
+  cd "$( dirname "$BATS_TEST_FILENAME" )"
   if [[ -x $(command -v starship) && -x $(command -v gcloud) ]]; then
     GCLOUD_ACTIVE_CONFIG=$(gcloud config configurations list --filter="is_active:true" --format="value(name)")
     echo "# GCLOUD_ACTIVE_CONFIG=$GCLOUD_ACTIVE_CONFIG" >&3

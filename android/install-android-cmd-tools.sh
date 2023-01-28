@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -e -o pipefail
 
 FILE_LINK=$(
   curl -s https://developer.android.com/studio#command-tools \

@@ -23,7 +23,8 @@ fi
 
 export PROFILE_SHELL
 
-if test SET_SHELL_ENV_VERBOSE -eq 1 ; then
+# shellcheck disable=SC2086
+if [ $SET_SHELL_ENV_VERBOSE -eq 1 ]; then
   echo "\$SHELL = $SHELL"
   echo "\$PROFILE_SHELL = $PROFILE_SHELL"
 fi

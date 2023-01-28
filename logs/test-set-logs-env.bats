@@ -1,9 +1,9 @@
 #!/usr/bin/env bats
 
-set -e
+set -e -o pipefail
 
 setup_file() {
-  cd "$( dirname "$BATS_TEST_FILENAME" )" || exit
+  cd "$( dirname "$BATS_TEST_FILENAME" )"
   bats_require_minimum_version 1.5.0
   # To disable shellcheck SC2154
   stderr=""
