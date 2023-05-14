@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  COMMON_SCRIPTS_ROOT: "${{ github.workspace }}"
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  ci-primary-linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm install -g bats bats-support bats-assert
+      - run: echo "NPM_ROOT_GLOBAL=$(npm root -g)" >> $GITHUB_ENV
+      - run: ./ci/ci-common-scripts.sh
