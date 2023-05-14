@@ -15,6 +15,7 @@ logs/set-logs-env.sh
 logs/test-set-logs-env.bats
 logs/test-set-logs-env.sh
 posix-hacks.sh
+prerequisite.sh
 saved-commands.md
 set-shell-env.sh
 starship/starship-gcloud.bats
