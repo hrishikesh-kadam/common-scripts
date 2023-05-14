@@ -16,14 +16,12 @@ defaults:
 
 jobs:
   ci-primary-linux:
-    runs-on: ubuntu-latest
-    # runs-on: ${{ matrix.runner }}
-    # strategy:
-    #   matrix:
-    #     runner: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner: [ ubuntu-latest, macos-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v3
-      # - uses: actions/setup-node@v3
       - run: npm install -g bats bats-support bats-assert
       - run: echo "NPM_ROOT_GLOBAL=$(npm root -g)" >> $GITHUB_ENV
       - run: ./ci/ci-common-scripts.sh
