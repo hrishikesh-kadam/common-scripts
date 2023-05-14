@@ -1,0 +1,3 @@
+flutter/test-setup-flutter-channels.bats
+logs/test-set-logs-env.bats
+starship/starship-gcloud.bats
