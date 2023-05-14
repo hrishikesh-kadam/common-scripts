@@ -25,6 +25,11 @@ elif [[ $(uname -s) =~ ^"MINGW" ]]; then
   fi
 fi
 
+if [[ $(uname -s) =~ ^"Darwin" ]]; then
+  brew install bash
+  bash --version
+fi
+
 if [[ ! -x $(command -v shellcheck) ]]; then
   if [[ $(uname -s) =~ ^"Linux" ]]; then
     sudo apt install shellcheck
