@@ -2,7 +2,8 @@
 
 # This shell script is meant to be sourced for printing colorful logs
 
-# TODO(hrishikesh-kadam): Check if multi-line feature is really needed
+# Pending Feature 
+# - Check if multi-line feature is really needed
 
 if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
 
