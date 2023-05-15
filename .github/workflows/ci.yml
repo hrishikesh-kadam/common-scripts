@@ -6,6 +6,17 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      runner:
+        description: 'Runner OS'
+        required: true
+        default: 'ubuntu-latest'
+        type: choice
+        options:
+          - 'ubuntu-latest'
+          - 'macos-latest'
+          - 'windows-latest'
+          - 'macos-13'
 
 env:
   COMMON_SCRIPTS_ROOT: "${{ github.workspace }}"
@@ -16,7 +27,7 @@ defaults:
 
 jobs:
   ci-primary-linux:
-    runs-on: ${{ matrix.runner }}
+    runs-on: ${{ inputs.runner || matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
@@ -25,7 +36,5 @@ jobs:
       - run: git config --global core.autocrlf false
         if: runner.os == 'Windows'
       - uses: actions/checkout@v3
-      - run: ./prerequisite.sh
-      - run: npm install -g bats bats-support bats-assert
-      - run: echo "NPM_ROOT_GLOBAL=$(npm root -g)" >> $GITHUB_ENV
+      - run: source prerequisite.sh
       - run: ./ci/ci-common-scripts.sh

@@ -3,6 +3,7 @@
 set -e -o pipefail
 
 source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
+PRINT_DEBUG_LOG=1
 
 check_command_on_path() {
   if [[ ! -x $(command -v "$1") ]]; then
@@ -50,8 +51,34 @@ check_command_on_path node
 check_command_on_path npm
 NPM_GLOBAL_PREFIX="$(npm config get prefix)"
 if [[ $(uname -s) =~ ^"MINGW" ]]; then
-  NPM_GLOBAL_PREFIX="$(cygpath "$NPM_GLOBAL_PREFIX")"
   # TODO(hrishikesh-kadam): Check this on Windows
+  debug_log "NPM_GLOBAL_PREFIX=$NPM_GLOBAL_PREFIX"
+  NPM_GLOBAL_PREFIX="$(cygpath "$NPM_GLOBAL_PREFIX")"
+  debug_log "NPM_GLOBAL_PREFIX=$NPM_GLOBAL_PREFIX"
 else
   check_directory_on_path "$NPM_GLOBAL_PREFIX/bin"
+fi
+
+NPM_ROOT_GLOBAL="$(npm root -g)"
+if [[ $(uname -s) =~ ^"MINGW" ]]; then
+  # TODO(hrishikesh-kadam): Check this on Windows
+  debug_log "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL"
+  NPM_ROOT_GLOBAL="$(cygpath "$NPM_ROOT_GLOBAL")"
+  debug_log "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL"
+fi
+if [[ $GITHUB_ACTIONS == "true" ]]; then
+  echo "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL" >> "$GITHUB_ENV"
+else
+  export NPM_ROOT_GLOBAL="$NPM_ROOT_GLOBAL"
+fi
+
+if [[ ! -x $(command -v bats) ]]; then
+  npm install -g bats
+  bats --version
+fi
+if [[ ! -d "$NPM_ROOT_GLOBAL/bats-support" ]]; then
+  npm install -g bats-support
+fi
+if [[ ! -d "$NPM_ROOT_GLOBAL/bats-assert" ]]; then
+  npm install -g bats-assert
 fi
