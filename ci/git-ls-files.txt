@@ -5,6 +5,7 @@ android/install-android-cmd-tools.sh
 android/install-bundletool.sh
 ci/ci-common-scripts.sh
 ci/git-ls-files.txt
+ci/prerequisite.sh
 ci/shellcheck-input-files.txt
 ci/test-bash-scripts-files.txt
 ci/test-bats-scripts-files.txt
@@ -15,7 +16,6 @@ logs/set-logs-env.sh
 logs/test-set-logs-env.bats
 logs/test-set-logs-env.sh
 posix-hacks.sh
-prerequisite.sh
 saved-commands.md
 set-shell-env.sh
 starship/starship-gcloud.bats

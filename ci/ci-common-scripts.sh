@@ -73,6 +73,7 @@ run_test_sh_scripts() {
 
 main() {
   CI_SCRIPT_DIR="$COMMON_SCRIPTS_ROOT/ci"
+  "$CI_SCRIPT_DIR/prerequisite.sh"
   check_git_ls_files
   run_shellcheck
   run_test_bats_scripts
