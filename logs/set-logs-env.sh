@@ -2,7 +2,7 @@
 
 # This shell script is meant to be sourced for printing colorful logs
 
-# Pending Feature 
+# Pending Features
 # - Check if multi-line feature is really needed
 
 if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi

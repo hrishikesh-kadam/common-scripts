@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
-if shopt -qo pipefail; then PARENT_PIPEFAIL=true; else PARENT_PIPEFAIL=false; fi
-
 set -e -o pipefail
 
 source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
@@ -89,5 +86,9 @@ if [[ ! -d "$NPM_ROOT_GLOBAL/bats-assert" ]]; then
   npm install -g bats-assert
 fi
 
-if [ $PARENT_ERREXIT = "true" ]; then set -e; else set +e; fi
-if [ $PARENT_PIPEFAIL = "true" ]; then set -o pipefail; else set +o pipefail; fi
+COMMON_SCRIPTS_PREREQUISITE="done"
+if [[ $GITHUB_ACTIONS == "true" ]]; then
+  echo "COMMON_SCRIPTS_PREREQUISITE=$COMMON_SCRIPTS_PREREQUISITE" >> "$GITHUB_ENV"
+else
+  export COMMON_SCRIPTS_PREREQUISITE
+fi
