@@ -94,16 +94,14 @@ teardown() {
 }
 
 @test "./setup-flutter-channels.sh --no-long-run --setup-path ./testdir | when testdir is not a writable directory" {
+  if [[ $(uname -s) =~ ^"MINGW" ]]; then
+    skip
+  fi
   mkdir ./testdir
   chmod u-w ./testdir
   run --separate-stderr ./setup-flutter-channels.sh --no-long-run --setup-path ./testdir
-  if [[ $(uname -s) =~ ^"MINGW" ]]; then
-    assert_success
-    assert [ -d ./testdir/stable -a -d ./testdir/beta -a -d ./testdir/dev ]
-  else
-    assert_failure 82
-    [[ "$stderr" =~ "--setup-path ./testdir needs to be a writable directory." ]]
-  fi
+  assert_failure 82
+  [[ "$stderr" =~ "--setup-path ./testdir needs to be a writable directory." ]]
 }
 
 @test "./setup-flutter-channels.sh --no-long-run --setup-path ./testdir | when testdir is a writable directory" {
