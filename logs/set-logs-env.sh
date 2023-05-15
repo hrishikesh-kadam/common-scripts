@@ -80,4 +80,4 @@ error_log_with_help() {
   exit "$2"
 }
 
-if [ $PARENT_ERREXIT ]; then set -e; else set +e; fi
+if [ $PARENT_ERREXIT = "true" ]; then set -e; else set +e; fi

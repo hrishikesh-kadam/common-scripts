@@ -29,4 +29,4 @@ if [ $SET_SHELL_ENV_VERBOSE -eq 1 ]; then
   echo "\$PROFILE_SHELL = $PROFILE_SHELL"
 fi
 
-if [ $PARENT_ERREXIT ]; then set -e; else set +e; fi
+if [ $PARENT_ERREXIT = "true" ]; then set -e; else set +e; fi
