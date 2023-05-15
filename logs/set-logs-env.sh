@@ -2,6 +2,8 @@
 
 # This shell script is meant to be sourced for printing colorful logs
 
+# TODO(hrishikesh-kadam): Check if multi-line feature is really needed
+
 if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
 
 . "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
@@ -13,19 +15,19 @@ export PRINT_INFO_LOG=0
 export PRINT_DEBUG_LOG=0
 
 print_in_red() {
-  printf "%b\n" "\033[31m$*\033[0m"
+  printf "%b%s%b\n" "\033[31m" "$*" "\033[0m"
 }
 
 print_in_yellow() {
-  printf "%b\n" "\033[33m$*\033[0m"
+  printf "%b%s%b\n" "\033[33m" "$*" "\033[0m"
 }
 
 print_in_green() {
-  printf "%b\n" "\033[32m$*\033[0m"
+  printf "%b%s%b\n" "\033[32m" "$*" "\033[0m"
 }
 
 print_in_cyan() {
-  printf "%b\n" "\033[36m$*\033[0m"
+  printf "%b%s%b\n" "\033[36m" "$*" "\033[0m"
 }
 
 error_log() {

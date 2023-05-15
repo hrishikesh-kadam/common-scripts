@@ -79,10 +79,11 @@ setup() {
   assert_output "[32m1st-argument 2nd-argument[0m"
 }
 
-@test "print_in_green multi-line" {
+@test "print_in_green multi-line or with escape sequences" {
   run print_in_green "1st-line\n2nd-line"
-  assert_line --index 0 "[32m1st-line"
-  assert_line --index 1 "2nd-line[0m"
+  # assert_line --index 0 "[32m1st-line"
+  # assert_line --index 1 "2nd-line[0m"
+  assert_output "[32m1st-line\n2nd-line[0m"
 }
 
 @test "error_log_with_exit Error log 0" {
