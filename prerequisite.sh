@@ -4,6 +4,7 @@ set -e -o pipefail
 
 source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 PRINT_DEBUG_LOG=1
+PRINT_WARNING_LOG=1
 
 check_command_on_path() {
   if [[ ! -x $(command -v "$1") ]]; then
@@ -66,10 +67,12 @@ if [[ $(uname -s) =~ ^"MINGW" ]]; then
   NPM_ROOT_GLOBAL="$(cygpath "$NPM_ROOT_GLOBAL")"
   debug_log "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL"
 fi
-if [[ $GITHUB_ACTIONS == "true" ]]; then
-  echo "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL" >> "$GITHUB_ENV"
-else
-  export NPM_ROOT_GLOBAL="$NPM_ROOT_GLOBAL"
+if ! export -p | grep "NPM_ROOT_GLOBAL=" &> /dev/null; then
+  if [[ $GITHUB_ACTIONS == "true" ]]; then
+    echo "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL" >> "$GITHUB_ENV"
+  else
+    warning_log "NPM_ROOT_GLOBAL variable is not exported"
+  fi
 fi
 
 if [[ ! -x $(command -v bats) ]]; then
