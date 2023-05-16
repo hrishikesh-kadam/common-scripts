@@ -171,11 +171,12 @@ setup_flutter_channels() {
   # shellcheck disable=SC2206
   local -a channels=($3)
 
-  if [[ "$(command -v trash)" ]]; then
-    readonly delete_command="trash"
-  else
-    readonly delete_command="rm -rf"
-  fi
+  # if [[ "$(command -v trash)" ]]; then
+  #   readonly delete_command="trash"
+  # else
+  #   readonly delete_command="rm -rf"
+  # fi
+  readonly delete_command="rm -rf"
 
   for channel in "${channels[@]}"; do
     local channel_path=$setup_path/$channel
