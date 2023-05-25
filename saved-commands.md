@@ -6,7 +6,7 @@
 
 ```console
 git ls-files --full-name --recurse-submodules \
-  | xargs -I {} grep --color=auto --with-filename "to be sourced" {}
+  | xargs -I {} grep --color=auto --with-filename "text to search" {}
 ```
 
 ## Flash images to USB
