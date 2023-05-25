@@ -3,6 +3,7 @@
 # Source - https://unix.stackexchange.com/a/72475/356166
 
 if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
+
 set -e
 
 SET_SHELL_ENV_VERBOSE=${SET_SHELL_ENV_VERBOSE:=0}
@@ -17,6 +18,8 @@ elif [ "$FCEDIT" ]; then
   PROFILE_SHELL="ksh"
 elif [ "$PS3" ]; then
   PROFILE_SHELL="unknown"
+  printf "%b\n" "\033[31mError: Unable to detect PROFILE_SHELL\033[0m"
+  exit 1
 else
   PROFILE_SHELL="sh"
 fi
