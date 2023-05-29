@@ -19,3 +19,4 @@ posix-hacks.sh
 saved-commands.md
 set-shell-env.sh
 starship/starship-gcloud.bats
+starship/starship.toml

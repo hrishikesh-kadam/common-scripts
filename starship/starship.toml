@@ -1,0 +1,28 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+[directory]
+truncate_to_repo = false
+truncation_symbol = ".../"
+
+[gcloud]
+format = '([$symbol($account(@$domain) )(\($project\) )]($style))'
+
+[git_status]
+style = "bold yellow"
+
+[hostname]
+disabled = false
+format = "[$ssh_symbol$hostname]($style) in "
+ssh_only = true
+style	= "bold green"
+
+[username]
+disabled = true
+format = "[$user@]($style)"
+show_always = true
+style_user = "bold green"
