@@ -28,8 +28,10 @@ elif [[ $(uname -s) =~ ^"MINGW" ]]; then
 fi
 
 if [[ $(uname -s) =~ ^"Darwin" ]]; then
-  brew install bash
-  bash --version
+  if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
+    brew install bash
+    bash --version
+  fi
 fi
 
 if [[ ! -x $(command -v shellcheck) ]]; then
@@ -44,8 +46,10 @@ if [[ ! -x $(command -v shellcheck) ]]; then
 fi
 
 if [[ $(uname -s) =~ ^"Darwin" ]]; then
-  brew install diffutils
-  diff --version
+  if ! diff --version | grep "diff (GNU diffutils) 3" &> /dev/null; then
+    brew install diffutils
+    diff --version
+  fi
 fi
 
 check_command_on_path node
