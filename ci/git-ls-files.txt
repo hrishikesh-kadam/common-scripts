@@ -4,6 +4,7 @@ README.md
 android/install-android-cmd-tools.sh
 android/install-bundletool.sh
 ci/ci-common-scripts.sh
+ci/common-prerequisite.sh
 ci/git-ls-files.txt
 ci/prerequisite.sh
 ci/shellcheck-input-files.txt

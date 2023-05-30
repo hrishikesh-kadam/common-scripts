@@ -1,6 +1,7 @@
 android/install-android-cmd-tools.sh
 android/install-bundletool.sh
 ci/ci-common-scripts.sh
+ci/common-prerequisite.sh
 ci/prerequisite.sh
 flutter/setup-flutter-channels.sh
 flutter/test-setup-flutter-channels.bats
