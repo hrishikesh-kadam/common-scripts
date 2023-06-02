@@ -1,3 +1,4 @@
+.common_bash_aliases
 android/install-android-cmd-tools.sh
 android/install-bundletool.sh
 ci/ci-common-scripts.sh

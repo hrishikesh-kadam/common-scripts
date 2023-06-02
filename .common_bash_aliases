@@ -1,0 +1,25 @@
+# shellcheck shell=bash disable=SC2139
+
+echo "In .common_bash_aliases"
+
+# Append the -aFhil to already set alias ls if any
+if [ -n "${BASH_ALIASES[ls]}" ]; then
+  alias ls="${BASH_ALIASES[ls]} -aFhil"
+else
+  alias ls="ls -aFhil"
+fi
+
+alias print-path='echo -e ${PATH//:/\\n}'
+
+search-in-git-tracked-files() {
+  git ls-files --full-name --recurse-submodules \
+    | xargs -I {} grep --color=auto --with-filename "$1" {}
+}
+
+alias flutter-master="$FLUTTER_MASTER_ROOT/bin/flutter"
+alias prepend-flutter-master="PATH=\"$FLUTTER_MASTER_ROOT/bin:$PATH\""
+alias flutter-beta="$FLUTTER_BETA_ROOT/bin/flutter"
+alias prepend-flutter-beta="PATH=\"$FLUTTER_BETA_ROOT/bin:$PATH\""
+alias prepend-flutter-stable="PATH=\"$FLUTTER_ROOT/bin:$PATH\""
+
+alias fastlane="bundle exec fastlane"
