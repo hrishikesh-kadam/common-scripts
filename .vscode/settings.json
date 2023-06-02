@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.bats": "shellscript",
+    ".common_bash_aliases": "shellscript",
+    ".common_bashrc": "shellscript",
+    ".common_shellrc": "shellscript",
+  },
+}
