@@ -3,6 +3,7 @@
 .common_shellrc
 .github/workflows/ci.yml
 .gitignore
+.shellcheckrc
 .vscode/settings.json
 README.md
 android/install-android-cmd-tools.sh

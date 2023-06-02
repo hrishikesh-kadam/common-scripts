@@ -27,14 +27,9 @@ check_git_ls_files() {
 
 run_shellcheck() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
-  arg="--norc"
-  arg+=" --external-sources"
-  arg+=" --source-path="
-  arg+="$COMMON_SCRIPTS_ROOT"
   while read -r file; do
     print_in_cyan "+ shellcheck $file"
-    # shellcheck disable=SC2086
-    shellcheck $arg "$file"
+    shellcheck "$file"
   done < "$CI_SCRIPT_DIR/shellcheck-input-files.txt"
   popd &> /dev/null
 }
