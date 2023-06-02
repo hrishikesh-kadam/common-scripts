@@ -1,5 +1,6 @@
 .common_bash_aliases
 .common_bashrc
+.common_shellrc
 .github/workflows/ci.yml
 .gitignore
 README.md
