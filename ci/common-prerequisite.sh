@@ -13,7 +13,11 @@ check_command_on_path() {
 }
 
 check_directory_on_path() {
-  if [[ ! "$PATH" =~ $1 ]]; then
+  local directory=$1
+  if [[ $(uname -s) =~ ^"MINGW" ]]; then
+    directory=$(cygpath "$directory")
+  fi
+  if [[ ! $PATH =~ $directory ]]; then
     error_log_with_exit "$1 directory not found on PATH" 1
   fi
 }
@@ -54,22 +58,16 @@ fi
 
 check_command_on_path node
 check_command_on_path npm
-NPM_GLOBAL_PREFIX="$(npm config get prefix)"
+NPM_PREFIX="$(npm config get prefix)"
 if [[ $(uname -s) =~ ^"MINGW" ]]; then
-  # TODO(hrishikesh-kadam): Check this on Windows
-  debug_log "NPM_GLOBAL_PREFIX=$NPM_GLOBAL_PREFIX"
-  NPM_GLOBAL_PREFIX="$(cygpath "$NPM_GLOBAL_PREFIX")"
-  debug_log "NPM_GLOBAL_PREFIX=$NPM_GLOBAL_PREFIX"
+  check_directory_on_path "$NPM_PREFIX"
 else
-  check_directory_on_path "$NPM_GLOBAL_PREFIX/bin"
+  check_directory_on_path "$NPM_PREFIX/bin"
 fi
 
 NPM_ROOT_GLOBAL="$(npm root -g)"
 if [[ $(uname -s) =~ ^"MINGW" ]]; then
-  # TODO(hrishikesh-kadam): Check this on Windows
-  debug_log "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL"
   NPM_ROOT_GLOBAL="$(cygpath "$NPM_ROOT_GLOBAL")"
-  debug_log "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL"
 fi
 if ! export -p | grep "NPM_ROOT_GLOBAL=" &> /dev/null; then
   if [[ $GITHUB_ACTIONS == "true" ]]; then
