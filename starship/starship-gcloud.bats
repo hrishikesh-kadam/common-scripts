@@ -29,8 +29,10 @@ teardown() {
 }
 
 teardown_file() {
-  gcloud config configurations activate "$GCLOUD_ACTIVE_CONFIG"
-  gcloud config configurations delete empty-config --quiet || true
+  if [[ -x $(command -v starship) && -x $(command -v gcloud) ]]; then
+    gcloud config configurations activate "$GCLOUD_ACTIVE_CONFIG"
+    gcloud config configurations delete empty-config --quiet || true
+  fi
 }
 
 @test "starship module gcloud | test empty" {
