@@ -38,7 +38,7 @@ setup() {
 
 @test "error_log" {
   run --separate-stderr error_log "Error log"
-  [[ $stderr == "[31mERROR: Error log[0m" ]]
+  [[ $stderr == "[31mError: Error log[0m" ]]
 }
 
 @test "warning_log" {
@@ -59,19 +59,19 @@ setup() {
 @test "PRINT_WARNING_LOG=1 warning_log" {
   PRINT_WARNING_LOG=1
   run warning_log "Warning log"
-  assert_output "[33mWARNING: Warning log[0m"
+  assert_output "[33mWarning: Warning log[0m"
 }
 
 @test "PRINT_INFO_LOG=1 info_log" {
   PRINT_INFO_LOG=1
   run info_log "Info log"
-  assert_output "[32mINFO: Info log[0m"
+  assert_output "[32mInfo: Info log[0m"
 }
 
 @test "PRINT_DEBUG_LOG=1 debug_log" {
   PRINT_DEBUG_LOG=1
   run debug_log "Debug log"
-  assert_output "[36mDEBUG: Debug log[0m"
+  assert_output "[36mDebug: Debug log[0m"
 }
 
 @test "print_in_green 1st-argument 2nd-argument" {
@@ -88,26 +88,26 @@ setup() {
 
 @test "error_log_with_exit Error log 0" {
   run --separate-stderr error_log_with_exit "Error log" 0
-  [[ $stderr == "[31mERROR: Error log[0m" ]]
+  [[ $stderr == "[31mError: Error log[0m" ]]
   assert_success
 }
 
 @test "error_log_with_exit Error log 1" {
   run --separate-stderr error_log_with_exit "Error log" 1
-  [[ $stderr == "[31mERROR: Error log[0m" ]]
+  [[ $stderr == "[31mError: Error log[0m" ]]
   assert_failure 1
 }
 
 @test "error_log_with_help Error log 0" {
   run --separate-stderr error_log_with_help "Error log" 0
-  [[ ${stderr_lines[0]} == "[31mERROR: Error log[0m" ]]
+  [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
   [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
   assert_success
 }
 
 @test "error_log_with_help Error log 1" {
   run --separate-stderr error_log_with_help "Error log" 1
-  [[ ${stderr_lines[0]} == "[31mERROR: Error log[0m" ]]
+  [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
   [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
   assert_failure 1
 }

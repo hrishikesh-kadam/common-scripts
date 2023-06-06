@@ -60,7 +60,7 @@ teardown() {
 @test "./setup-flutter-channels.sh -help" {
   run --separate-stderr ./setup-flutter-channels.sh -help
   assert_failure 80
-  [[ "$stderr" =~ "ERROR: Unrecognized option: -help" ]]
+  [[ "$stderr" =~ "Error: Unrecognized option: -help" ]]
 }
 
 @test "./setup-flutter-channels.sh --setup-path" {
@@ -180,7 +180,7 @@ teardown() {
 @test "./setup-flutter-channels.sh --no-long-run --setup-path ./testdir --channels stable beta --debug dev master" {
   run --separate-stderr ./setup-flutter-channels.sh --no-long-run --setup-path ./testdir --channels stable beta --debug dev master
   assert_failure 80
-  [[ "$stderr" =~ "ERROR: Unrecognized option: dev" ]]
+  [[ "$stderr" =~ "Error: Unrecognized option: dev" ]]
 }
 
 @test "./setup-flutter-channels.sh --no-long-run --setup-path ./testdir --channels --debug stable beta dev master" {
