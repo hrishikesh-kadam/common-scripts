@@ -1,6 +1,6 @@
 # shellcheck shell=bash disable=SC2139
 
-echo "In .common_bash_aliases"
+echo "Sourcing .common_bash_aliases"
 
 # Append the -aFhil to already set alias ls if any
 if [ -n "${BASH_ALIASES[ls]}" ]; then

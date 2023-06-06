@@ -1,5 +1,7 @@
 # shellcheck shell=bash
 
+echo "Sourcing .common_bashrc"
+
 # https://askubuntu.com/questions/740805/how-can-i-remove-all-files-from-current-directory-using-terminal
 # https://unix.stackexchange.com/questions/6393/how-do-you-move-all-files-including-hidden-from-one-directory-to-another
 # https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html

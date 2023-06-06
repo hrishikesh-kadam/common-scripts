@@ -2,7 +2,7 @@
 
 # Commands to be sourced by interactive shells across different platforms
 
-echo "In .common_shellrc"
+echo "Sourcing .common_shellrc"
 
 # https://wiki.archlinux.org/title/GnuPG#Configure_pinentry_to_use_the_correct_TTY
 # https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/telling-git-about-your-signing-key
