@@ -16,6 +16,12 @@ search-in-git-tracked-files() {
     | xargs -I {} grep --color=auto --with-filename "$1" {}
 }
 
+delete-dependabot-branches() {
+  git branch -r \
+    | grep dependabot \
+    | xargs git branch -rd
+}
+
 alias flutter-master="$FLUTTER_MASTER_ROOT/bin/flutter"
 alias prepend-flutter-master="PATH=\"$FLUTTER_MASTER_ROOT/bin:$PATH\""
 alias flutter-beta="$FLUTTER_BETA_ROOT/bin/flutter"
