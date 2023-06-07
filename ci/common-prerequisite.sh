@@ -24,17 +24,23 @@ check_directory_on_path() {
 
 if [[ $(uname -s) =~ ^"Darwin" ]]; then
   check_command_on_path brew
-elif [[ $(uname -s) =~ ^"MINGW" ]]; then
-  check_command_on_path choco
-  if [[ ! $GITHUB_ACTIONS ]]; then
-    check_command_on_path winget
-  fi
-fi
-
-if [[ $(uname -s) =~ ^"Darwin" ]]; then
   if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
     brew install bash
     bash --version
+  fi
+elif [[ $(uname -s) =~ ^"MINGW" ]]; then
+  check_command_on_path pwsh
+  check_command_on_path winget
+  WINGET_LINKS_PATH_WIN="$LOCALAPPDATA\Microsoft\WinGet\Links"
+  WINGET_LINKS_PATH_NIX=$(cygpath "$WINGET_LINKS_PATH_WIN")
+  if [[ ! $PATH =~ $WINGET_LINKS_PATH_NIX ]]; then
+    if [[ $GITHUB_ACTIONS == "true" ]]; then
+      echo "$WINGET_LINKS_PATH_WIN" >> "$GITHUB_PATH"
+      PATH="$WINGET_LINKS_PATH_NIX:$PATH"
+    else
+      # Deliberately avoiding to set PATH by setx command
+      error_log_with_exit "$WINGET_LINKS_PATH_NIX directory not found on PATH" 1
+    fi
   fi
 fi
 
@@ -44,7 +50,7 @@ if [[ ! -x $(command -v shellcheck) ]]; then
   elif [[ $(uname -s) =~ ^"Darwin" ]]; then
     brew install shellcheck
   elif [[ $(uname -s) =~ ^"MINGW" ]]; then
-    choco install shellcheck
+    winget install koalaman.shellcheck
   fi
   shellcheck --version
 fi
