@@ -69,7 +69,7 @@ NPM_ROOT_GLOBAL="$(npm root -g)"
 if [[ $(uname -s) =~ ^"MINGW" ]]; then
   NPM_ROOT_GLOBAL="$(cygpath "$NPM_ROOT_GLOBAL")"
 fi
-if ! export -p | grep "NPM_ROOT_GLOBAL=" &> /dev/null; then
+if ! export -p | grep "declare -x NPM_ROOT_GLOBAL=" &> /dev/null; then
   if [[ $GITHUB_ACTIONS == "true" ]]; then
     echo "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL" >> "$GITHUB_ENV"
   else
