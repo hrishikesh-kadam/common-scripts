@@ -58,11 +58,11 @@ fi
 
 check_command_on_path node
 check_command_on_path npm
-NPM_PREFIX="$(npm config get prefix)"
+NPM_CONFIG_PREFIX="$(npm config get prefix)"
 if [[ $(uname -s) =~ ^"MINGW" ]]; then
-  check_directory_on_path "$NPM_PREFIX"
+  check_directory_on_path "$NPM_CONFIG_PREFIX"
 else
-  check_directory_on_path "$NPM_PREFIX/bin"
+  check_directory_on_path "$NPM_CONFIG_PREFIX/bin"
 fi
 
 NPM_ROOT_GLOBAL="$(npm root -g)"
