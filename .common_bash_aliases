@@ -18,7 +18,7 @@ search-in-git-tracked-files() {
 
 list-crlf-files() {
   git ls-files --full-name --recurse-submodules \
-    | xargs -I {} dos2unix --info=c {}
+    | xargs -I {} dos2unix --info=cdbt {}
 }
 
 delete-dependabot-branches() {
