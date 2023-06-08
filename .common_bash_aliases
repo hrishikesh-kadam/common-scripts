@@ -16,6 +16,11 @@ search-in-git-tracked-files() {
     | xargs -I {} grep --color=auto --with-filename "$1" {}
 }
 
+list-crlf-files() {
+  git ls-files --full-name --recurse-submodules \
+    | xargs -I {} dos2unix --info=c {}
+}
+
 delete-dependabot-branches() {
   git branch -r \
     | grep dependabot \
