@@ -1,11 +1,19 @@
 # Note: jobs of ci.yml and ci-dispatch.yml should be in sync
-name: ci
+name: ci-dispatch
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: 'Runner OS'
+        required: true
+        default: 'ubuntu-latest'
+        type: choice
+        options:
+          - 'ubuntu-latest'
+          - 'macos-latest'
+          - 'windows-latest'
+          - 'macos-13'
 
 env:
   COMMON_SCRIPTS_ROOT: "${{ github.workspace }}"
@@ -16,12 +24,8 @@ defaults:
 
 jobs:
   ci:
-    name: CI on ${{ matrix.runner }}
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      fail-fast: false
-      matrix:
-        runner: [ ubuntu-latest, macos-latest, windows-latest ]
+    name: CI on ${{ inputs.runner }}
+    runs-on: ${{ inputs.runner }}
     steps:
       - run: git config --global core.autocrlf false
         if: runner.os == 'Windows'

@@ -5,10 +5,6 @@ set -e -o pipefail
 source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
 check_git_ls_files() {
-  # TODO(hrishikesh-kadam): Check this on Windows
-  if [[ $(uname -s) =~ ^"MINGW" ]]; then
-    set +e +o pipefail
-  fi
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
   saved_git_ls_files="$(< "$CI_SCRIPT_DIR/git-ls-files.txt")"
   current_git_ls_files="$(git ls-files --full-name --recurse-submodules)"
@@ -20,9 +16,6 @@ check_git_ls_files() {
     print_in_green "saved_git_ls_files == current_git_ls_files"
   fi
   popd &> /dev/null
-  if [[ $(uname -s) =~ ^"MINGW" ]]; then
-    set -e -o pipefail
-  fi
 }
 
 check_crlf_files() {
