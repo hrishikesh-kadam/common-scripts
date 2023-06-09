@@ -25,6 +25,40 @@ check_git_ls_files() {
   fi
 }
 
+check_crlf_files() {
+  pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  output=$( \
+    git ls-files --full-name --recurse-submodules \
+      | xargs -I {} dos2unix --info=cdbt {}
+  )
+  if [[ $output ]]; then
+    error_log "Found CRLF Files"
+    print_in_red "$output"
+    exit 1
+  else
+    print_in_green "All git tracked files ends with LF"
+  fi
+  popd &> /dev/null
+}
+
+run_scriptanalyzer() {
+  pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  while read -r file; do
+    print_in_cyan "+ Invoke-ScriptAnalyzer $file"
+    pwsh -NoProfile -Command "Invoke-ScriptAnalyzer $file -EnableExit"
+  done < "$CI_SCRIPT_DIR/scriptanalyzer-input-files.txt"
+  popd &> /dev/null
+}
+
+run_test_ps1_scripts() {
+  pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  while read -r file; do
+    print_in_cyan "+ pwsh -NoProfile $file"
+    pwsh -NoProfile "$file"
+  done < "$CI_SCRIPT_DIR/test-ps1-scripts-files.txt"
+  popd &> /dev/null
+}
+
 run_shellcheck() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
   while read -r file; do
@@ -72,6 +106,11 @@ main() {
     "$CI_SCRIPT_DIR/prerequisite.sh"
   fi
   check_git_ls_files
+  if [[ $(uname -s) =~ ^"MINGW" ]]; then
+    check_crlf_files
+    run_scriptanalyzer
+    run_test_ps1_scripts
+  fi
   run_shellcheck
   run_test_bats_scripts
   run_test_bash_scripts

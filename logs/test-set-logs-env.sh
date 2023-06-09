@@ -5,6 +5,7 @@ set -e
 SET_SHELL_ENV_VERBOSE=1
 . "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
+echo "Testing test-set-logs-env.sh"
 echo "-------------------------------------------"
 
 print_in_red "Print in red"
@@ -39,3 +40,5 @@ echo "-------------------------------------------"
 ( error_log_with_exit "Error log" 1 ) || true
 ( error_log_with_help "Error log" 0 )
 ( error_log_with_help "Error log" 1 ) || true
+
+echo "-------------------------------------------"
