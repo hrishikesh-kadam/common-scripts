@@ -21,8 +21,7 @@ FILE_LINK=$(
 FILE_NAME="$(echo "$FILE_LINK" | grep -o "commandlinetools-$OS_SHORT-[0-9]*_latest")"
 curl -o "/tmp/android-$FILE_NAME.zip" \
   -sL "$FILE_LINK"
-unzip -qo "/tmp/android-$FILE_NAME.zip" "cmdline-tools/*" \
-  -d "/tmp/android-$FILE_NAME"
+unzip -qo "/tmp/android-$FILE_NAME.zip" -d "/tmp/android-$FILE_NAME"
 rm -rf "$ANDROID_HOME/cmdline-tools/latest"
 mkdir -p "$ANDROID_HOME/cmdline-tools/latest"
 mv /tmp/android-"$FILE_NAME"/cmdline-tools/* "$ANDROID_HOME/cmdline-tools/latest/"
