@@ -1,4 +1,5 @@
-. $env:COMMON_SCRIPTS_ROOT\logs\set-logs-env.ps1
+Set-StrictMode -Version latest
+$ErrorActionPreference = "Stop"
 
 if (-not (Get-Module -ListAvailable PSScriptAnalyzer `
       -ErrorAction SilentlyContinue)) {
