@@ -6,7 +6,9 @@ source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
 
 check_git_ls_files() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  local saved_git_ls_files
   saved_git_ls_files="$(< "$CI_SCRIPT_DIR/git-ls-files.txt")"
+  local current_git_ls_files
   current_git_ls_files="$(git ls-files --full-name --recurse-submodules)"
   if [[ "$saved_git_ls_files" != "$current_git_ls_files" ]]; then
     error_log "saved_git_ls_files != current_git_ls_files"
@@ -20,6 +22,7 @@ check_git_ls_files() {
 
 check_cr_files() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  local output
   output=$( \
     git ls-files --full-name --recurse-submodules -z \
       | xargs -0 mac2unix --info=chdumbt
@@ -36,6 +39,7 @@ check_cr_files() {
 
 check_crlf_files() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  local output
   output=$( \
     git ls-files --full-name --recurse-submodules -z \
       | xargs -0 dos2unix --info=chdumbt
