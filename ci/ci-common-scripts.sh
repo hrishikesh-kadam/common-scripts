@@ -18,18 +18,34 @@ check_git_ls_files() {
   popd &> /dev/null
 }
 
-check_crlf_files() {
+check_cr_files() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
   output=$( \
-    git ls-files --full-name --recurse-submodules \
-      | xargs -I {} dos2unix --info=cdbt {}
+    git ls-files --full-name --recurse-submodules -z \
+      | xargs -0 mac2unix --info=chdumbt
   )
   if [[ $output ]]; then
-    error_log "Found CRLF Files"
+    error_log "Found CR line ending File(s)"
     print_in_red "$output"
     exit 1
   else
-    print_in_green "All git tracked files ends with LF"
+    print_in_green "Checked CR line ending in git tracked files"
+  fi
+  popd &> /dev/null
+}
+
+check_crlf_files() {
+  pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  output=$( \
+    git ls-files --full-name --recurse-submodules -z \
+      | xargs -0 dos2unix --info=chdumbt
+  )
+  if [[ $output ]]; then
+    error_log "Found CRLF line ending File(s)"
+    print_in_red "$output"
+    exit 1
+  else
+    print_in_green "Checked CRLF line ending in git tracked files"
   fi
   popd &> /dev/null
 }
@@ -100,6 +116,7 @@ main() {
   fi
   check_git_ls_files
   if [[ $(uname -s) =~ ^"MINGW" ]]; then
+    check_cr_files
     check_crlf_files
     run_scriptanalyzer
     run_test_ps1_scripts
