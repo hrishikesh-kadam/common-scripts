@@ -119,9 +119,9 @@ main() {
     "$CI_SCRIPT_DIR/prerequisite.sh"
   fi
   check_git_ls_files
+  check_cr_files
+  check_crlf_files
   if [[ $(uname -s) =~ ^"MINGW" ]]; then
-    check_cr_files
-    check_crlf_files
     run_scriptanalyzer
     run_test_ps1_scripts
   fi

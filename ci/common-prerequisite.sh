@@ -50,6 +50,15 @@ elif [[ $(uname -s) =~ ^"MINGW" ]]; then
   fi
 fi
 
+if [[ ! -x $(command -v dos2unix) ]]; then
+  if [[ $(uname -s) =~ ^"Linux" ]]; then
+    sudo apt install dos2unix
+  elif [[ $(uname -s) =~ ^"Darwin" ]]; then
+    brew install dos2unix
+  fi
+  dos2unix --version
+fi
+
 if [[ ! -x $(command -v shellcheck) ]]; then
   if [[ $(uname -s) =~ ^"Linux" ]]; then
     sudo apt install shellcheck
