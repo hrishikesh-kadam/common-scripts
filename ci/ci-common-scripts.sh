@@ -6,6 +6,7 @@ source "$COMMON_SCRIPTS_ROOT/logs/logs-env-bash.sh"
 
 check_git_ls_files() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  echo "Comparing saved_git_ls_files with current_git_ls_files"
   local saved_git_ls_files
   saved_git_ls_files="$(< "$CI_SCRIPT_DIR/git-ls-files.txt")"
   local current_git_ls_files
@@ -22,6 +23,7 @@ check_git_ls_files() {
 
 check_cr_line_endings() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  echo "Checking CR line endings in git tracked files"
   local output
   output=$( \
     git ls-files \
@@ -44,6 +46,7 @@ check_cr_line_endings() {
 
 check_crlf_line_endings() {
   pushd "$COMMON_SCRIPTS_ROOT" &> /dev/null
+  echo "Checking CRLF line endings in git tracked files"
   local output
   output=$( \
     git ls-files \
