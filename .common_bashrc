@@ -2,9 +2,6 @@
 
 echo "Sourcing .common_bashrc"
 
-source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
-source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env-bash.sh"
-
 # https://askubuntu.com/questions/740805/how-can-i-remove-all-files-from-current-directory-using-terminal
 # https://unix.stackexchange.com/questions/6393/how-do-you-move-all-files-including-hidden-from-one-directory-to-another
 # https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html

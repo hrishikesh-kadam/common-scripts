@@ -1,4 +1,4 @@
 ci/common-prerequisite.ps1
 ci/prerequisite.ps1
-logs/set-logs-env.ps1
-logs/test-set-logs-env.ps1
+logs/logs-env.ps1
+logs/test-logs-env.ps1

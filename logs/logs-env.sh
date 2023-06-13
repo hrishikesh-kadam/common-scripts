@@ -7,8 +7,6 @@
 
 if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
 
-. "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
-
 set -e
 
 export PRINT_WARNING_LOG=0

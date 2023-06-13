@@ -4,6 +4,8 @@
 # set-logs-env.sh is a POSIX script.
 # POSIX doesn't have `export -f` feature.
 
+source "$COMMON_SCRIPTS_ROOT/logs/logs-env.sh"
+
 if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
 if shopt -qo pipefail; then PARENT_PIPEFAIL=true; else PARENT_PIPEFAIL=false; fi
 

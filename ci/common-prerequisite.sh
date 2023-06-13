@@ -2,8 +2,7 @@
 
 set -e -o pipefail
 
-source "$COMMON_SCRIPTS_ROOT/logs/set-logs-env.sh"
-PRINT_DEBUG_LOG=1
+source "$COMMON_SCRIPTS_ROOT/logs/logs-env-bash.sh"
 PRINT_WARNING_LOG=1
 
 check_command_on_path() {
