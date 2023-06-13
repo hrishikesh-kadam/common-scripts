@@ -23,6 +23,7 @@ ci/test-ps1-scripts-files.txt
 ci/test-sh-scripts-files.txt
 flutter/setup-flutter-channels.sh
 flutter/test-setup-flutter-channels.bats
+logs/set-logs-env-bash.sh
 logs/set-logs-env.ps1
 logs/set-logs-env.sh
 logs/test-set-logs-env.bats
