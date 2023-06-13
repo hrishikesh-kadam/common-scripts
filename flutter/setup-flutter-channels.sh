@@ -78,7 +78,7 @@ parse_channels() {
     esac
   done
   if (( ${#__channels[@]} == 0 )); then
-    error_log_with_help "No channels specified." 84
+    log_error_with_help "No channels specified." 84
   fi
 }
 
@@ -139,17 +139,17 @@ parse_arguments() {
         shift ${#_channels[@]}
         ;;
       *)
-        error_log_with_help "Unrecognized option: $1" 80
+        log_error_with_help "Unrecognized option: $1" 80
         ;;
     esac
   done
 
   if [[ -z "$_setup_path" ]]; then
-    error_log_with_help "--setup-path <path> is needed." 81
+    log_error_with_help "--setup-path <path> is needed." 81
   elif [[ ! -d "$_setup_path" ]]; then
     run mkdir "$_setup_path"
   elif [[ ! -w "$_setup_path" ]]; then
-    error_log_with_help "--setup-path $_setup_path needs to be a writable directory." 82
+    log_error_with_help "--setup-path $_setup_path needs to be a writable directory." 82
   fi
 
   _setup_path=${_setup_path%/}
@@ -183,7 +183,7 @@ setup_flutter_channels() {
     if [[ -d "$channel_path" ]]; then
       if [[ -n "$(ls -A "$channel_path")" ]]; then
         if (( overwrite == 0 )); then
-          error_log_with_help "$channel_path is not empty, please append --overwrite after <path> to continue." 83
+          log_error_with_help "$channel_path is not empty, please append --overwrite after <path> to continue." 83
         else
           run $delete_command "$channel_path"
           run mkdir "$channel_path"
@@ -226,12 +226,12 @@ main() {
   readonly overwrite
   readonly channels
 
-  debug_log "--no-long-run=$_NO_LONG_RUN"
-  debug_log "--verbose=$VERBOSE"
-  debug_log "--dry-run=$DRY_RUN"
-  debug_log "--setup-path=$setup_path"
-  debug_log "--overwrite=$overwrite"
-  debug_log "--channels=${channels[*]}"
+  log_debug "--no-long-run=$_NO_LONG_RUN"
+  log_debug "--verbose=$VERBOSE"
+  log_debug "--dry-run=$DRY_RUN"
+  log_debug "--setup-path=$setup_path"
+  log_debug "--overwrite=$overwrite"
+  log_debug "--channels=${channels[*]}"
 
   setup_flutter_channels "$setup_path" $overwrite "${channels[*]}"
 }

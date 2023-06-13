@@ -7,7 +7,7 @@ PRINT_WARNING_LOG=1
 
 check_command_on_path() {
   if [[ ! -x $(command -v "$1") ]]; then
-    error_log_with_exit "$1 command not accessible from PATH" 1
+    log_error_with_exit "$1 command not accessible from PATH" 1
   fi
 }
 
@@ -17,7 +17,7 @@ check_directory_on_path() {
     directory=$(cygpath "$directory")
   fi
   if [[ ! $PATH =~ $directory ]]; then
-    error_log_with_exit "$1 directory not found on PATH" 1
+    log_error_with_exit "$1 directory not found on PATH" 1
   fi
 }
 
@@ -40,7 +40,7 @@ elif [[ $(uname -s) =~ ^"MINGW" ]]; then
         PATH="$WINGET_LINKS_PATH_NIX:$PATH"
       else
         # Deliberately avoiding to set PATH by setx command
-        error_log_with_exit "$WINGET_LINKS_PATH_NIX directory not found on PATH" 1
+        log_error_with_exit "$WINGET_LINKS_PATH_NIX directory not found on PATH" 1
       fi
     fi
   fi
@@ -97,7 +97,7 @@ if ! export -p | grep "declare -x NPM_ROOT_GLOBAL=" &> /dev/null; then
   if [[ $GITHUB_ACTIONS == "true" ]]; then
     echo "NPM_ROOT_GLOBAL=$NPM_ROOT_GLOBAL" >> "$GITHUB_ENV"
   else
-    warning_log "NPM_ROOT_GLOBAL variable is not exported"
+    log_warning "NPM_ROOT_GLOBAL variable is not exported"
   fi
 fi
 

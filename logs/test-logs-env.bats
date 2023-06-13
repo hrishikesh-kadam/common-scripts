@@ -36,41 +36,41 @@ setup() {
   assert_output "[36mPrint in cyan[0m"
 }
 
-@test "error_log" {
-  run --separate-stderr error_log "Error log"
+@test "log_error" {
+  run --separate-stderr log_error "Error log"
   [[ $stderr == "[31mError: Error log[0m" ]]
 }
 
-@test "warning_log" {
-  run warning_log "Warning log"
+@test "log_warning" {
+  run log_warning "Warning log"
   [ -z "${lines[0]}" ]
 }
 
-@test "info_log" {
-  run info_log "Info log"
+@test "log_info" {
+  run log_info "Info log"
   [ -z "${lines[0]}" ]
 }
 
-@test "debug_log" {
-  run debug_log "Debug log"
+@test "log_debug" {
+  run log_debug "Debug log"
   [ -z "${lines[0]}" ]
 }
 
-@test "PRINT_WARNING_LOG=1 warning_log" {
+@test "PRINT_WARNING_LOG=1 log_warning" {
   PRINT_WARNING_LOG=1
-  run warning_log "Warning log"
+  run log_warning "Warning log"
   assert_output "[33mWarning: Warning log[0m"
 }
 
-@test "PRINT_INFO_LOG=1 info_log" {
+@test "PRINT_INFO_LOG=1 log_info" {
   PRINT_INFO_LOG=1
-  run info_log "Info log"
+  run log_info "Info log"
   assert_output "[32mInfo: Info log[0m"
 }
 
-@test "PRINT_DEBUG_LOG=1 debug_log" {
+@test "PRINT_DEBUG_LOG=1 log_debug" {
   PRINT_DEBUG_LOG=1
-  run debug_log "Debug log"
+  run log_debug "Debug log"
   assert_output "[36mDebug: Debug log[0m"
 }
 
@@ -86,27 +86,27 @@ setup() {
   assert_output "[32m1st-line\n2nd-line[0m"
 }
 
-@test "error_log_with_exit Error log 0" {
-  run --separate-stderr error_log_with_exit "Error log" 0
+@test "log_error_with_exit Error log 0" {
+  run --separate-stderr log_error_with_exit "Error log" 0
   [[ $stderr == "[31mError: Error log[0m" ]]
   assert_success
 }
 
-@test "error_log_with_exit Error log 1" {
-  run --separate-stderr error_log_with_exit "Error log" 1
+@test "log_error_with_exit Error log 1" {
+  run --separate-stderr log_error_with_exit "Error log" 1
   [[ $stderr == "[31mError: Error log[0m" ]]
   assert_failure 1
 }
 
-@test "error_log_with_help Error log 0" {
-  run --separate-stderr error_log_with_help "Error log" 0
+@test "log_error_with_help Error log 0" {
+  run --separate-stderr log_error_with_help "Error log" 0
   [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
   [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
   assert_success
 }
 
-@test "error_log_with_help Error log 1" {
-  run --separate-stderr error_log_with_help "Error log" 1
+@test "log_error_with_help Error log 1" {
+  run --separate-stderr log_error_with_help "Error log" 1
   [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
   [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
   assert_failure 1

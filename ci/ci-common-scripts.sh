@@ -12,7 +12,7 @@ check_git_ls_files() {
   local current_git_ls_files
   current_git_ls_files="$(git ls-files --full-name --recurse-submodules)"
   if [[ "$saved_git_ls_files" != "$current_git_ls_files" ]]; then
-    error_log "saved_git_ls_files != current_git_ls_files"
+    log_error "saved_git_ls_files != current_git_ls_files"
     diff --unified --color \
       <(echo "$saved_git_ls_files") <(echo "$current_git_ls_files")
   else
@@ -35,7 +35,7 @@ check_cr_line_endings() {
             --info=chdumbt \
   )
   if [[ $output ]]; then
-    error_log "Found CR line ending File(s)"
+    log_error "Found CR line ending File(s)"
     print_in_red "$output"
     exit 1
   else
@@ -58,7 +58,7 @@ check_crlf_line_endings() {
             --info=chdumbt \
   )
   if [[ $output ]]; then
-    error_log "Found CRLF line ending File(s)"
+    log_error "Found CRLF line ending File(s)"
     print_in_red "$output"
     exit 1
   else

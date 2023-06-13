@@ -29,23 +29,23 @@ print_in_cyan() {
   printf "%b%s%b\n" "\033[36m" "$*" "\033[0m"
 }
 
-error_log() {
+log_error() {
   print_in_red "Error: $*" >&2
 }
 
-warning_log() {
+log_warning() {
   if [ $PRINT_WARNING_LOG -eq 1 ]; then
     print_in_yellow "Warning: $*"
   fi
 }
 
-info_log() {
+log_info() {
   if [ $PRINT_INFO_LOG -eq 1 ]; then
     print_in_green "Info: $*"
   fi
 }
 
-debug_log() {
+log_debug() {
   if [ $PRINT_DEBUG_LOG -eq 1 ]; then
     print_in_cyan "Debug: $*"
   fi
@@ -59,8 +59,8 @@ debug_log() {
 # Returns:
 #   $2 argument
 #######################################
-error_log_with_exit() {
-  error_log "$1"
+log_error_with_exit() {
+  log_error "$1"
   exit "$2"
 }
 
@@ -72,8 +72,8 @@ error_log_with_exit() {
 # Returns:
 #   $2 argument
 #######################################
-error_log_with_help() {
-  error_log "$1"
+log_error_with_help() {
+  log_error "$1"
   echo "Use -h or --help for details." >&2
   exit "$2"
 }
