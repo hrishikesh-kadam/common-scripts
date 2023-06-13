@@ -33,7 +33,9 @@ log_debug "Debug log"
 echo "-------------------------------------------"
 
 print_in_green "1st-argument" "2nd-argument"
-print_in_green "1st-line\n2nd-line"
+print_in_green "1st-line
+2nd-line"
+print_in_green "C:\n_escape\t_sequence"
 
 echo "-------------------------------------------"
 
