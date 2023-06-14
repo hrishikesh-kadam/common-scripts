@@ -11,16 +11,6 @@ fi
 
 alias print-path='echo -e ${PATH//:/\\n}'
 
-search-in-git-tracked-files() {
-  git ls-files --full-name --recurse-submodules \
-    | xargs -I {} grep --color=auto --with-filename "$1" {}
-}
-
-list-crlf-files() {
-  git ls-files --full-name --recurse-submodules \
-    | xargs -I {} dos2unix --info=cdbt {}
-}
-
 delete-dependabot-branches() {
   git branch -r \
     | grep dependabot \
