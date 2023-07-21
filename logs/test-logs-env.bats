@@ -87,8 +87,8 @@ setup() {
 }
 
 @test "print_in_green with escape sequences" {
-  run print_in_green "C:\n_escape\t_sequence"
-  assert_output "[32mC:\n_escape\t_sequence[0m"
+  run print_in_green "C:\n_escape\t_sequences"
+  assert_output "[32mC:\n_escape\t_sequences[0m"
 }
 
 @test "log_error_with_exit Error log 0" {
