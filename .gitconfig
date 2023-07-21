@@ -1,0 +1,29 @@
+[user]
+	name = Hrishikesh Kadam
+	email = hrkadam.92@gmail.com
+	signingKey = 9F8DDA637947BEA5!
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
+[core]
+	editor = code --wait
+[init]
+	defaultBranch = main
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[difftool "intellij"]
+	cmd = intellij-idea-community diff $LOCAL $REMOTE
+[status]
+	submoduleSummary = true
+[alias]
+	lg = log --graph --oneline --branches --tags --remotes -10
+[submodule]
+	recurse = true
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpuser = hrkadam.92@gmail.com
+	smtpencryption = tls
+	smtpserverport = 587
