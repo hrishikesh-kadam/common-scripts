@@ -18,9 +18,19 @@ delete-dependabot-branches() {
 }
 
 alias flutter-master="$FLUTTER_MASTER_ROOT/bin/flutter"
-alias prepend-flutter-master="PATH=\"$FLUTTER_MASTER_ROOT/bin:$PATH\""
 alias flutter-beta="$FLUTTER_BETA_ROOT/bin/flutter"
-alias prepend-flutter-beta="PATH=\"$FLUTTER_BETA_ROOT/bin:$PATH\""
-alias prepend-flutter-stable="PATH=\"$FLUTTER_ROOT/bin:$PATH\""
+alias flutter-stable="$FLUTTER_STABLE_ROOT/bin/flutter"
+prepare-flutter-master() {
+  export PATH="$FLUTTER_MASTER_ROOT/bin:$PATH"
+  export FLUTTER_ROOT=$FLUTTER_MASTER_ROOT
+}
+prepare-flutter-beta() {
+  export PATH="$FLUTTER_BETA_ROOT/bin:$PATH"
+  export FLUTTER_ROOT=$FLUTTER_BETA_ROOT
+}
+prepare-flutter-stable() {
+  export PATH="$FLUTTER_STABLE_ROOT/bin:$PATH"
+  export FLUTTER_ROOT=$FLUTTER_STABLE_ROOT
+}
 
 alias fastlane="bundle exec fastlane"
