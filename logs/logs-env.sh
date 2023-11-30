@@ -9,9 +9,9 @@ if [ -z ${-%*e*} ]; then PARENT_ERREXIT=true; else PARENT_ERREXIT=false; fi
 
 set -e
 
-export PRINT_WARNING_LOG=0
-export PRINT_INFO_LOG=0
-export PRINT_DEBUG_LOG=0
+export PRINT_WARNING_LOG=1
+export PRINT_INFO_LOG=1
+export PRINT_DEBUG_LOG=1
 
 print_in_red() {
   printf "%b%s%b\n" "\033[31m" "$*" "\033[0m"

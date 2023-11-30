@@ -43,35 +43,35 @@ setup() {
 
 @test "log_warning" {
   run log_warning "Warning log"
-  [ -z "${lines[0]}" ]
+  assert_output "[33mWarning: Warning log[0m"
 }
 
 @test "log_info" {
   run log_info "Info log"
-  [ -z "${lines[0]}" ]
+  assert_output "[32mInfo: Info log[0m"
 }
 
 @test "log_debug" {
   run log_debug "Debug log"
+  assert_output "[36mDebug: Debug log[0m"
+}
+
+@test "PRINT_WARNING_LOG=0 log_warning" {
+  PRINT_WARNING_LOG=0
+  run log_warning "Warning log"
   [ -z "${lines[0]}" ]
 }
 
-@test "PRINT_WARNING_LOG=1 log_warning" {
-  PRINT_WARNING_LOG=1
-  run log_warning "Warning log"
-  assert_output "[33mWarning: Warning log[0m"
-}
-
-@test "PRINT_INFO_LOG=1 log_info" {
-  PRINT_INFO_LOG=1
+@test "PRINT_INFO_LOG=0 log_info" {
+  PRINT_INFO_LOG=0
   run log_info "Info log"
-  assert_output "[32mInfo: Info log[0m"
+  [ -z "${lines[0]}" ]
 }
 
-@test "PRINT_DEBUG_LOG=1 log_debug" {
-  PRINT_DEBUG_LOG=1
+@test "PRINT_DEBUG_LOG=0 log_debug" {
+  PRINT_DEBUG_LOG=0
   run log_debug "Debug log"
-  assert_output "[36mDebug: Debug log[0m"
+  [ -z "${lines[0]}" ]
 }
 
 @test "print_in_green 1st-argument 2nd-argument" {

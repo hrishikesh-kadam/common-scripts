@@ -23,12 +23,9 @@ log_debug "Debug log"
 
 echo "-------------------------------------------"
 
-PRINT_WARNING_LOG=1
-log_warning "Warning log"
-PRINT_INFO_LOG=1
-log_info "Info log"
-PRINT_DEBUG_LOG=1
-log_debug "Debug log"
+( PRINT_WARNING_LOG=0 log_warning "Warning log" )
+( PRINT_INFO_LOG=0 log_info "Info log" )
+( PRINT_DEBUG_LOG=0 log_debug "Debug log" )
 
 echo "-------------------------------------------"
 
