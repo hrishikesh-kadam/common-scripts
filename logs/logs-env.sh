@@ -55,27 +55,23 @@ log_debug() {
 # Print $1 as error log and exit with $2 as status
 # Arguments:
 #   $1 - Error log
-#   $2 - Exit status
-# Returns:
-#   $2 argument
+#   $2 - Exit status, defaults to 1
 #######################################
 log_error_with_exit() {
   log_error "$1"
-  exit "$2"
+  exit "${2:-1}"
 }
 
 #######################################
 # Print $1 as error log, print help details and exit with $2 as status
 # Arguments:
 #   $1 - Error log
-#   $2 - Exit status
-# Returns:
-#   $2 argument
+#   $2 - Exit status, defaults to 1
 #######################################
 log_error_with_help() {
   log_error "$1"
   echo "Use -h or --help for details." >&2
-  exit "$2"
+  exit "${2:-1}"
 }
 
 if [ $PARENT_ERREXIT = "true" ]; then set -e; else set +e; fi

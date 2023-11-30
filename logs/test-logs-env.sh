@@ -36,9 +36,11 @@ print_in_green "C:\n_escape\t_sequences"
 
 echo "-------------------------------------------"
 
-( log_error_with_exit "Error log" 0 )
+( log_error_with_exit "Error log" ) || true
 ( log_error_with_exit "Error log" 1 ) || true
-( log_error_with_help "Error log" 0 )
+( log_error_with_exit "Error log" 0 )
+( log_error_with_help "Error log" ) || true
 ( log_error_with_help "Error log" 1 ) || true
+( log_error_with_help "Error log" 0 )
 
 echo "-------------------------------------------"

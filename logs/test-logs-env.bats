@@ -91,10 +91,10 @@ setup() {
   assert_output "[32mC:\n_escape\t_sequences[0m"
 }
 
-@test "log_error_with_exit Error log 0" {
-  run --separate-stderr log_error_with_exit "Error log" 0
+@test "log_error_with_exit Error log" {
+  run --separate-stderr log_error_with_exit "Error log" ""
   [[ $stderr == "[31mError: Error log[0m" ]]
-  assert_success
+  assert_failure 1
 }
 
 @test "log_error_with_exit Error log 1" {
@@ -103,11 +103,17 @@ setup() {
   assert_failure 1
 }
 
-@test "log_error_with_help Error log 0" {
-  run --separate-stderr log_error_with_help "Error log" 0
+@test "log_error_with_exit Error log 0" {
+  run --separate-stderr log_error_with_exit "Error log" 0
+  [[ $stderr == "[31mError: Error log[0m" ]]
+  assert_success
+}
+
+@test "log_error_with_help Error log" {
+  run --separate-stderr log_error_with_help "Error log"
   [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
   [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
-  assert_success
+  assert_failure 1
 }
 
 @test "log_error_with_help Error log 1" {
@@ -115,4 +121,11 @@ setup() {
   [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
   [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
   assert_failure 1
+}
+
+@test "log_error_with_help Error log 0" {
+  run --separate-stderr log_error_with_help "Error log" 0
+  [[ ${stderr_lines[0]} == "[31mError: Error log[0m" ]]
+  [[ ${stderr_lines[1]} == "Use -h or --help for details." ]]
+  assert_success
 }
