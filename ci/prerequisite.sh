@@ -2,7 +2,7 @@
 
 set -e -o pipefail
 
-source "$COMMON_SCRIPTS_ROOT/logs/logs-env-bash.sh"
+source "$COMMON_SCRIPTS_ROOT/logs/logs-env.sh"
 
 echo "Checking prerequisite"
 

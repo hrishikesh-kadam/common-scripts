@@ -8,7 +8,7 @@ ci/common-prerequisite.sh
 ci/prerequisite.sh
 flutter/setup-flutter-channels.sh
 flutter/test-setup-flutter-channels.bats
-logs/logs-env-bash.sh
+logs/logs-env-posix.sh
 logs/logs-env.sh
 logs/test-logs-env.bats
 logs/test-logs-env.sh

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$COMMON_SCRIPTS_ROOT/logs/logs-env-bash.sh"
+source "$COMMON_SCRIPTS_ROOT/logs/logs-env.sh"
 
 declare -i VERBOSE=0
 declare -i DRY_RUN=0

@@ -4,9 +4,9 @@ set -e
 
 SET_SHELL_ENV_VERBOSE=1
 . "$COMMON_SCRIPTS_ROOT/set-shell-env.sh"
-. "$COMMON_SCRIPTS_ROOT/logs/logs-env.sh"
+. "$COMMON_SCRIPTS_ROOT/logs/logs-env-posix.sh"
 
-echo "Testing test-logs-env.sh"
+echo "Testing logs-env-posix.sh"
 echo "-------------------------------------------"
 
 print_in_red "Print in red"

@@ -2,8 +2,7 @@
 
 set -e -o pipefail
 
-source "$COMMON_SCRIPTS_ROOT/logs/logs-env-bash.sh"
-PRINT_WARNING_LOG=1
+source "$COMMON_SCRIPTS_ROOT/logs/logs-env.sh"
 
 check_command_on_path() {
   if [[ ! -x $(command -v "$1") ]]; then
