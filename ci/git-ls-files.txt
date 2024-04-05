@@ -2,6 +2,7 @@
 .common_bashrc
 .common_shellrc
 .gitconfig
+.github/dependabot.yml
 .github/workflows/ci-dispatch.yml
 .github/workflows/ci.yml
 .gitignore

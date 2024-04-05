@@ -25,6 +25,6 @@ jobs:
     steps:
       - run: git config --global core.autocrlf false
         if: runner.os == 'Windows'
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./ci/prerequisite.sh
       - run: ./ci/ci-common-scripts.sh

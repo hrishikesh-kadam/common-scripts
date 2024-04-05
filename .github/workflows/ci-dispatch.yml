@@ -13,7 +13,6 @@ on:
           - 'ubuntu-latest'
           - 'macos-latest'
           - 'windows-latest'
-          - 'macos-13'
 
 env:
   COMMON_SCRIPTS_ROOT: "${{ github.workspace }}"
@@ -29,6 +28,6 @@ jobs:
     steps:
       - run: git config --global core.autocrlf false
         if: runner.os == 'Windows'
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./ci/prerequisite.sh
       - run: ./ci/ci-common-scripts.sh
