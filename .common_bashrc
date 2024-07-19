@@ -10,3 +10,5 @@ shopt -s dotglob
 # To trim the prompt directory to the specified depth
 # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-PROMPT_005fDIRTRIM
 PROMPT_DIRTRIM=2
+
+INPUTRC="$COMMON_SCRIPTS_ROOT/.common_inputrc"

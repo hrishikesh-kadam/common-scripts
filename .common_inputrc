@@ -1,0 +1,5 @@
+# shellcheck shell=bash
+
+# echo "Sourcing .common_inputrc"
+
+set completion-ignore-case on

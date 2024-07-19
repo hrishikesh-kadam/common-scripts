@@ -1,0 +1,7 @@
+# shellcheck shell=bash
+
+echo "Sourcing .common_zshrc"
+
+autoload -Uz compinit && compinit
+# https://superuser.com/a/1092328/944841
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
