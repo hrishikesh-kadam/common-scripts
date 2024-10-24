@@ -10,6 +10,7 @@ ci/common-prerequisite.sh
 ci/prerequisite.sh
 flutter/setup-flutter-channels.sh
 flutter/test-setup-flutter-channels.bats
+gpg/export-all-gpg-keys.sh
 logs/logs-env-posix.sh
 logs/logs-env.sh
 logs/test-logs-env.bats

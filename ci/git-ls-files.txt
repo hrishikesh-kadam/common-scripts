@@ -27,6 +27,7 @@ ci/test-ps1-scripts-files.txt
 ci/test-sh-scripts-files.txt
 flutter/setup-flutter-channels.sh
 flutter/test-setup-flutter-channels.bats
+gpg/export-all-gpg-keys.sh
 logs/logs-env-posix.sh
 logs/logs-env.ps1
 logs/logs-env.sh
