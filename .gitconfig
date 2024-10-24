@@ -28,5 +28,5 @@
 	smtpuser = hrkadam.92@gmail.com
 	smtpencryption = tls
 	smtpserverport = 587
-[includeIf "gitdir:**/work/applore/**"]
-	path = other/applore.gitconfig
+[includeIf "gitdir:**/work/nonstopio/**"]
+	path = other/nonstopio.gitconfig

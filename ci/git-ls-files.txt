@@ -34,7 +34,7 @@ logs/logs-env.sh
 logs/test-logs-env.bats
 logs/test-logs-env.ps1
 logs/test-logs-env.sh
-other/applore.gitconfig
+other/nonstopio.gitconfig
 posix-hacks.sh
 saved-commands.md
 set-shell-env.sh
